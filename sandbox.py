@@ -12,7 +12,7 @@ class SandBox:
         self.screen = root.screen.subsurface(x, y, self.width, self.height)
         self.bg_color = colors["black"]
         self.blocks_list = []
-        self.gravt = 8
+        self.gravt = 9
         self.build()
     
     def build(self):
