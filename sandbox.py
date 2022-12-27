@@ -1,6 +1,6 @@
 import pygame
 from assets.colors import colors
-from blocks import Air, Sand, Water
+from blocks import Air, Water
 from random import choice
 
 
