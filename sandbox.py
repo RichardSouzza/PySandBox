@@ -1,6 +1,5 @@
 import pygame
 from assets.colors import colors
-from blocks import Air, Water
 from random import choice
 
 
@@ -57,14 +56,14 @@ class SandBox:
     def draw(self):
         self.screen.fill(self.bg_color)
         for block in self.blocks_list:
-            if type(block) == Air:
+            if block.type == "eraser":
                 self.remove_block(block)
             else:
                 block.draw(self.screen)
     
     def fill(self):
         for block in self.blocks_list:
-            if type(block) == Water:
+            if block.type == "liquid":
                 col = block.col
                 row = self.blocks_per_row(block.row)
                 bottom = self.blocks_per_row(block.row + 1)
@@ -86,9 +85,9 @@ class SandBox:
                         b_left = self.blocks_per_column(left_col, bottom)
                         b_right = self.blocks_per_column(right_col, bottom)
                         
-                        if any(left) and Water not in left:
+                        if any(left) and "liquid" not in [block.type for block in left]:
                             block_in_left = True
-                        if any(right) and Water not in right:
+                        if any(right) and "liquid" not in [block.type for block in right]:
                             block_in_right = True
                         
                         if not any(b_left) and not any(b_right):

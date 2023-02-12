@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from assets.colors import colors
-from blocks import Air, Earth, Sand, Stone, Water
+from blocks import Earth, Eraser, Sand, Stone, Water
 
 
 class BlocksBar:
@@ -51,8 +51,8 @@ class BlocksBar:
             self.cols_width,
             self.height - self.border_width
         )
-        self.air_button = Button(
-            Air,
+        self.eraser_button = Button(
+            Eraser,
             colors["white"],
             colors["dark_white"],
             self.cols[4], round(self.border_width / 2),
@@ -64,7 +64,7 @@ class BlocksBar:
         self.buttons["earth"] = self.earth_button
         self.buttons["stone"] = self.stone_button
         self.buttons["water"] = self.water_button
-        self.buttons["air"] = self.air_button
+        self.buttons["eraser"] = self.eraser_button
     
     def event(self, x=0, y=0, event=None):
         if event in self.keys.keys():

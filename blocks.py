@@ -3,7 +3,8 @@ from assets.colors import colors
 
 
 class Block:
-    def __init__(self, color, fall):
+    def __init__(self, type, color, fall):
+        self.type = type
         self.color = color
         self.fall = fall
     
@@ -33,26 +34,26 @@ class Block:
         self.row = row
 
 
-class Air(Block):
-    def __init__(self):
-        super().__init__(colors["white"], False)
-
-
 class Earth(Block):
     def __init__(self):
-        super().__init__(colors["earth"], True)
+        super().__init__("solid", colors["earth"], True)
+
+
+class Eraser(Block):
+    def __init__(self):
+        super().__init__("eraser", colors["white"], False)
 
 
 class Sand(Block):
     def __init__(self):
-        super().__init__(colors["sand"], True)
+        super().__init__("solid", colors["sand"], True)
 
 
 class Stone(Block):
     def __init__(self):
-        super().__init__(colors["stone"], False)
+        super().__init__("solid", colors["stone"], False)
 
 
 class Water(Block):
     def __init__(self):
-        super().__init__(colors["water"], True)
+        super().__init__("liquid", colors["water"], True)
