@@ -1,5 +1,5 @@
 import pygame
-from assets.colors import colors
+from pysandbox.colors import *
 
 
 class Block:
@@ -10,15 +10,15 @@ class Block:
     
     def collision_y(self, blocks_list, align=False):
         for block in blocks_list:
-            if self.rect.bottom >= block.rect.top:
-                if align:
-                    self.rect.bottom = block.rect.top
-                    if type(block) == Water and type(self) != Water:
-                        initial_y = self.rect.y
-                        self.rect.y = block.rect.y
-                        block.rect.y = initial_y
-                
-                return True
+            if self.col == block.col:
+                if self.rect.bottom >= block.rect.top:
+                    if align:
+                        self.rect.bottom = block.rect.top
+                        if block.type == "liquid" and self.type != "liquid":
+                            initial_y = self.rect.y
+                            self.rect.y = block.rect.y
+                            block.rect.y = initial_y 
+                    return True
     
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, self.rect)
@@ -36,24 +36,24 @@ class Block:
 
 class Earth(Block):
     def __init__(self):
-        super().__init__("solid", colors["earth"], True)
+        super().__init__("solid", EARTH_COLOR, True)
 
 
 class Eraser(Block):
     def __init__(self):
-        super().__init__("eraser", colors["white"], False)
+        super().__init__("eraser", WHITE, False)
 
 
 class Sand(Block):
     def __init__(self):
-        super().__init__("solid", colors["sand"], True)
+        super().__init__("solid", SAND_COLOR, True)
 
 
 class Stone(Block):
     def __init__(self):
-        super().__init__("solid", colors["stone"], False)
+        super().__init__("solid", STONE_COLOR, False)
 
 
 class Water(Block):
     def __init__(self):
-        super().__init__("liquid", colors["water"], True)
+        super().__init__("liquid", WATER_COLOR, True)

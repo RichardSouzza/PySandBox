@@ -1,0 +1,8 @@
+[game-setup]
+fps = 60
+constant-events-interval = 15
+recurring-events-interval = 100
+place-block-cooldown = 150
+
+[sandbox]
+gravity-force = 4
